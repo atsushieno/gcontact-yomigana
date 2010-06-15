@@ -1,0 +1,61 @@
+* これは何?
+
+	gcontact-yomigana は、Google Contactsにある名前の読み仮名を自動的に
+	推測して登録する、単純なツールです。
+
+	今のところ、姓と名のみ対応しています。
+
+
+* 何ができるの?
+
+	[重要] もしGoogle Contactsの連絡先の内容をひっちゃかめっちゃかに
+	してもらいたくなければ、まずバックアップをとって、復元できることを
+	確認しておきましょう。
+
+	以下を実行すると
+
+		$ [mono] gcontact-yomigana.exe [username] [password] 
+
+	読み仮名を自動的に設定します。
+	既に設定されている場合には変更しません。
+
+	以下を実行すると
+
+		$ [mono] gcontact-yomigana.exe [username] [password] --delete
+
+	姓名の読み仮名のフィールドをすべてクリーンアップします。
+
+	APIの制約から、これらの操作はいずれもたいへん遅いものです（全ての
+	更新操作に1回のwebアクセスが生じるのです）。のんびり待ってください。
+
+	ご想像の通り、これは（今のところ）確認も何もできない単純なツールです。
+	パッチやforkは歓迎です。
+
+
+* ビルド
+
+	このツールをビルドするには、gdata-sharp-contactsパッケージを
+	インストールする必要があります。そうしたら、"make" を実行して
+	ビルドできます。
+
+	この代わりに、google-gdata .NETプロジェクト[*1]から
+	Google.GData.Contacts.dll, Google.GData.Extensions.dll,
+	Google.GData.Client.dll をローカルにコピーして、cscやgmcsで
+	コンパイルすることもできます。ローカルコピーはビルド時のみ必要
+	です。（GACにインストールされている限り、実行時には不要です。）
+
+	[*1] http://code.google.com/p/google-gdata/
+
+
+* 読み仮名自動生成の仕組み
+
+	これは単に mecab [*2] を呼び出す単純なCGIスクリプト[*3]です。
+	そんなわけで、あまり正確なものは期待しないでください。
+	人名に特化したものでもありませんので。
+
+	[*2] http://mecab.sourceforge.net/
+	[*3] http://gist.github.com/439232
+
+
+Atsushi Eno
+http://github.com/atsushieno

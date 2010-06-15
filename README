@@ -1,0 +1,59 @@
+* What is this?
+
+	gcontact-yomigana is a simple (stupid) tool to automatically
+	phoneticss to name components in Google Contacts.
+
+	So far it only processes GivenName and FamilyName.
+
+
+* What does this tool do?
+
+	[IMPORTANT] If you don't want to get your Google Contacts injected
+	against your will, make sure to create backup copy of them so that
+	you can recover from unwanted changes.
+
+	Run
+
+		$ [mono] gcontact-yomigana.exe [username] [password] 
+
+	to automatically fill phonetics.
+	If there already are phonetics, then there will be no change.
+
+	Run
+
+		$ [mono] gcontact-yomigana.exe [username] [password] --delete
+
+	to delete all phonetics fields from every contact.
+
+	Due to some limitations, both process are very slow (it results in
+	one web access for each update operation). Be patient.
+
+	Yes, it is a stupid tool without any confirmation (so far).
+	Any patches or forks are welcome.
+
+
+* Build
+
+	To build this tool, you have to install gdata-sharp-contacts
+	package. Just run "make" to build it.
+
+	Instead, you can copy Google.GData.Contacts.dll,
+	Google.GData.Extensions.dll and Google.GData.Client.dll from
+	google-gdata .NET project [*1] locally, and compile it with csc
+	or gmcs. Local copies are needed only to build it. (You don't need
+	them when you run it as long as they are in the GAC).
+
+	[*1] http://code.google.com/p/google-gdata/
+
+
+* Auto Phonetics Generation Internals
+
+	It simply uses mecab[*2] with a simple stupid CGI script[*3]. Don't
+	expect to be very precise, it's not dedicated for Japanese names.
+
+	[*2] http://mecab.sourceforge.net/
+	[*3] http://gist.github.com/439232
+
+
+Atsushi Eno
+http://github.com/atsushieno
